@@ -71,6 +71,8 @@ public class UserResource {
 
     @POST
     @Path("/{id}/wallet/add")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response addFunds(@PathParam("id") Long id, Map<String, Double> body) {
         User u = userServiceEJB.addFunds(id, body.get("amount"));
         return Response.ok(u).build();
