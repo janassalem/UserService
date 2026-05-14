@@ -26,8 +26,13 @@ public class UserResource {
     @Path("/register/customer")
     public Response registerCustomer(User user) {
         user.setRole("CUSTOMER");
-        user.setWalletBalance(0.0);
-        return Response.ok(userServiceEJB.register(user)).build();
+
+        if (user.getWalletBalance() == null) {
+            user.setWalletBalance(300.0);
+        }
+
+        User savedUser = userServiceEJB.register(user);
+        return Response.ok(savedUser).build();
     }
 
     @POST
@@ -38,6 +43,14 @@ public class UserResource {
         return Response.ok(userServiceEJB.register(user)).build();
     }
 
+    // /api/users/register/admin
+    @POST
+    @Path("/register/admin")
+    public Response registerAdmin(User user) {
+        user.setRole("ADMIN");
+        user.setWalletBalance(0.0);
+        return Response.ok(userServiceEJB.register(user)).build();
+    }
     @POST
     @Path("/login")
     public Response login(LoginRequest req) {

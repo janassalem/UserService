@@ -56,11 +56,11 @@ public class User {
         this.professionType = professionType;
     }
 
-    public double getWalletBalance() {
+    public Double getWalletBalance() {
         return walletBalance;
     }
 
-    public void setWalletBalance(double walletBalance) {
+    public void setWalletBalance(Double walletBalance) {
         this.walletBalance = walletBalance;
     }
 }
